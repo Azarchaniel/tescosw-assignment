@@ -1,6 +1,8 @@
 # TescoSW assignment - Weather forecast application
 
 Weather forecast application create as an assignment for a JavaScript developer role in TescoSW.
+Allow user to see weather forecast for the five days (min/avg/max temperature, humidity, wind speed and direction, sunrise, sunset).
+The city for the forecast can be chosen either with autocomplete or with geolocation.
 
 ## Available Scripts
 
@@ -17,6 +19,50 @@ Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm run lint`
+
+Apply ESLint rules on the whole project, or use flag `--fix` to fix the issues.
+
+## Folder structure
+```
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── src
+│   ├── components
+│   │   ├── Autocomplete.tsx
+│   │   ├── SingleDayWeatherCard.tsx
+│   │   ├── Spinner.tsx         //loading spinner
+│   │   └── WeatherChart.tsx
+│   ├── data
+│   │   └── city.list.json      //data
+│   ├── pages                           
+│   │   └── MainWeather.tsx     //main page of app
+│   ├── types
+│   │   └── types.tsx           //global types and interfaces
+│   ├── utils
+│   │   └── utils.tsx           //functions used in app
+│   ├── App.scss                //main CSS file
+│   ├── App.test.tsx
+│   ├── App.tsx
+│   ├── index.css
+│   ├── index.tsx
+│   ├── logo.svg
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   └── setupTests.ts
+├── .env
+├── .env.example
+├── .env.local
+├── .eslintrc.json              //ESLint rules and settings
+├── package.json
+├── package-lock.json
+├── README.md
+└── tsconfig.json
+```
+
+## Author
+[Lubos Csonka](https://www.linkedin.com/in/%C4%BEubo%C5%A1-csonka-1443aa136/)
