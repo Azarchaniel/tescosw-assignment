@@ -8,6 +8,7 @@ interface AutocompleteProps<T> {
     placeholder?: string;
     maxResults?: number;
     useLocalization?: () => void;
+    initialValue?: string;
 }
 
 const Autocomplete =
@@ -17,12 +18,19 @@ const Autocomplete =
          getDisplayValue,
          placeholder = "Vyhledat",
          maxResults = 10,
-        useLocalization
+         useLocalization,
+         initialValue = ""
      }: AutocompleteProps<T>) => {
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(initialValue);
     const [filteredSuggestions, setFilteredSuggestions] = useState<T[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
+
+        useEffect(() => {
+            if (initialValue) {
+                setInputValue(initialValue); //city details are already in parent component, here I need only show the name
+            }
+        }, [initialValue, data, getDisplayValue, onSelect]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;

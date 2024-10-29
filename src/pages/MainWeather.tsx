@@ -1,13 +1,14 @@
-import {useEffect, useState} from "react";
+import {ReactElement, useEffect, useState} from "react";
 import {fetchWeatherData, findClosestCityOptimized, getCurrentPosition} from "../utils/utils";
 import Autocomplete from "../components/Autocomplete";
 import {ICity, IDailyForecast, IWeatherData} from "../types/types";
 import cityListJson from "../data/city.list.json"
 import SingleDayWeatherCard from "../components/SingleDayWeatherCard";
 import '../App.scss';
+import Spinner from "../components/Spinner";
 
-export const MainWeatherPage = () => {
-    const [loading, setLoading] = useState(true); //TODO: spinner
+export const MainWeatherPage = (): ReactElement => {
+    const [loading, setLoading] = useState(false);
     const [weatherData, setWeatherData] = useState<IWeatherData | undefined>(undefined);
     const [city, setCity] = useState<ICity | null>(null);
     const [title, setTitle] = useState("Předpověď počasí");
@@ -34,20 +35,21 @@ export const MainWeatherPage = () => {
     }, [city]);
 
     const displayDailyWeatherData = () => {
-        if (!weatherData || !weatherData.daily) return;
+        if (!weatherData || !weatherData.daily || loading) return;
 
         return (
             weatherData.daily
                 .slice(0,5) //display only five days
-                .map((day: IDailyForecast) => <SingleDayWeatherCard dailyData={day} />)
+                .map((day: IDailyForecast) => <SingleDayWeatherCard dailyData={day} key={day.dt}/>)
         );
     }
 
     const getCityFromPosition = async () => {
-        //TODO: add loading spinner
+        setLoading(true);
         const position: GeolocationPosition = await getCurrentPosition();
         const nearestCity = findClosestCityOptimized(position, cityData)
         setCity(nearestCity);
+        setLoading(false);
     }
 
     return (
@@ -55,12 +57,13 @@ export const MainWeatherPage = () => {
             <h1>{title}</h1>
             <Autocomplete<ICity>
                 data={cityData}
+                initialValue={city?.name}
                 onSelect={setCity}
                 getDisplayValue={(city) => city.name}
                 placeholder="Vyhledejte město"
                 useLocalization={getCityFromPosition}
             />
-            {loading && city ? <span>Načítám data...</span> : <></>}
+            <Spinner loading={loading}/>
             <div className="forecast">{displayDailyWeatherData()}</div>
         </>
     )
