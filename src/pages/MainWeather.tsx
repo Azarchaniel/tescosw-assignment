@@ -6,6 +6,7 @@ import cityListJson from "../data/city.list.json"
 import SingleDayWeatherCard from "../components/SingleDayWeatherCard";
 import '../App.scss';
 import Spinner from "../components/Spinner";
+import WeatherChart from "../components/WeatherChart";
 
 export const MainWeatherPage = (): ReactElement => {
     const defaultTitle = "Předpověď počasí";
@@ -14,6 +15,7 @@ export const MainWeatherPage = (): ReactElement => {
     const [weatherData, setWeatherData] = useState<IWeatherData | undefined>(undefined);
     const [city, setCity] = useState<ICity | null>(null);
     const [title, setTitle] = useState(defaultTitle);
+    const [openCharts, setOpenCharts] = useState(false);
 
     const cityData: ICity[] = cityListJson as ICity[];
 
@@ -69,6 +71,15 @@ export const MainWeatherPage = (): ReactElement => {
             />
             <Spinner loading={loading}/>
             <div className="forecast">{displayDailyWeatherData()}</div>
+            {weatherData ? <>
+                <div className="toggleChart" onClick={() => setOpenCharts(!openCharts)}>
+                    <span>{openCharts ? "▲" : "▼"}</span>
+                    &nbsp;
+                    <span>Zobrazit graf vývoje počasí</span>
+                </div>
+                <div className={`weatherChart ${openCharts ? 'open' : 'close'}`}>
+                    <WeatherChart weatherData={weatherData.daily.slice(0,5)} />
+                </div></> : <></>}
         </>
     )
 }

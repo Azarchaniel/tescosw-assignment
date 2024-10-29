@@ -6,8 +6,12 @@ $borderRadius: 0.4rem;
 }
 
 h1 {
-
   margin: 0 0 2rem 0;
+}
+
+.toggleChart {
+  cursor: pointer;
+  margin-bottom: 2rem;
 }
 
 .weatherDay {
@@ -143,4 +147,25 @@ h1 {
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
   }
+}
+
+.weatherChart {
+  display: flex;
+  max-height: 0;
+  transition: all 1s ease;
+  // chart.js is rendering charts into canvas
+  canvas {
+    margin-right: 2rem;
+  }
+}
+
+.open {
+  max-height: 15rem;
+  height: 15rem;
+}
+
+.close {
+  max-height: 0;
+  height: 0;
+  overflow: hidden;
 }
