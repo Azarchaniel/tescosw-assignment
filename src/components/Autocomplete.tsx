@@ -7,6 +7,7 @@ interface AutocompleteProps<T> {
     getDisplayValue: (item: T) => string;
     placeholder?: string;
     maxResults?: number;
+    useLocalization?: () => void;
 }
 
 const Autocomplete =
@@ -15,7 +16,8 @@ const Autocomplete =
          onSelect,
          getDisplayValue,
          placeholder = "Vyhledat",
-         maxResults = 10
+         maxResults = 10,
+        useLocalization
      }: AutocompleteProps<T>) => {
     const [inputValue, setInputValue] = useState("");
     const [filteredSuggestions, setFilteredSuggestions] = useState<T[]>([]);
@@ -62,13 +64,19 @@ const Autocomplete =
             ref={wrapperRef}
             className="autocompleteWrapper"
         >
-            <input
-                className="autocompleteInput"
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder={placeholder}
-            />
+            <div className="autocompleteInputWrapper">
+                <input
+                    className="autocompleteInput"
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    placeholder={placeholder}
+                />
+                {useLocalization ? <span onClick={useLocalization}>
+                    ⌖
+                </span> : null}
+            </div>
+
 
             {isOpen && filteredSuggestions.length > 0 && (
                 <ul className="autocompleteSuggestions">

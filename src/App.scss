@@ -73,6 +73,19 @@ h1 {
     padding: 0.5rem;
   }
 
+  &InputWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+      cursor: pointer;
+      font-size: 2rem;
+      position: absolute;
+      padding: 1rem;
+    }
+  }
+
   &Suggestions {
     width: 21rem;
     outline: lightgray solid 1px;
