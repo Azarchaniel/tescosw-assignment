@@ -33,10 +33,10 @@ const SingleDayWeatherCard = ({dailyData}: Props) => {
             <span className="minMaxTemp">{Math.round(temp.min)}°C - {Math.round(temp.max)}°C</span>
         </div>
         <div className="column additionalInfo">
-            <span>Humidity: {humidity}</span>
-            <span>Wind: {wind_speed}, {getWindDirection(wind_deg)}</span>
-            <span>Sunrise: {formatUnixTime(sunrise, true)}</span>
-            <span>Sunset: {formatUnixTime(sunset, true)}</span>
+            <div><span>Vlhkost:</span> {humidity}%</div>
+            <div><span>Vítr:</span> {wind_speed} m/s, {getWindDirection(wind_deg)}</div>
+            <div><span>Východ slunce:</span> {formatUnixTime(sunrise, true)}</div>
+            <div><span>Západ slunce:</span> {formatUnixTime(sunset, true)}</div>
         </div>
     </div>)
 }

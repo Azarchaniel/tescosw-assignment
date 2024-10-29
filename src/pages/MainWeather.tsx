@@ -15,7 +15,6 @@ export const MainWeatherPage = () => {
     const cityData: ICity[] = cityListJson as ICity[];
 
     useEffect(() => {
-        console.log(city);
         if (!city) return;
 
         setLoading(true);
@@ -25,7 +24,7 @@ export const MainWeatherPage = () => {
             })
             .then((data) => {
                 setWeatherData(data);
-                console.log(data);
+
                 const currentDate = new Date().toLocaleDateString();
                 const fiveDaysLater = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
                 setTitle(`Predpoveď počasí pro ${city.name} (${city.country}), ${currentDate} - ${fiveDaysLater}`);
@@ -52,7 +51,7 @@ export const MainWeatherPage = () => {
                 getDisplayValue={(city) => city.name}
                 placeholder="Vyhledejte město"
             />
-            {loading ? <span>Loading....</span> : <></>}
+            {loading && city ? <span>Načítám data...</span> : <></>}
             <div className="forecast">{displayDailyWeatherData()}</div>
         </>
     )
