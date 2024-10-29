@@ -4,7 +4,7 @@ import Autocomplete from "../components/Autocomplete";
 import {ICity, IDailyForecast, IWeatherData} from "../types/types";
 import cityListJson from "../data/city.list.json"
 import SingleDayWeatherCard from "../components/SingleDayWeatherCard";
-import '../App.css';
+import '../App.scss';
 
 export const MainWeatherPage = () => {
     const [loading, setLoading] = useState(true);

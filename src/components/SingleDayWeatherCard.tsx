@@ -1,5 +1,5 @@
 import {IDailyForecast} from "../types/types";
-import '../App.css';
+import '../App.scss';
 import {formatUnixDate, formatUnixTime} from "../utils/utils";
 
 interface Props {
@@ -15,7 +15,7 @@ const SingleDayWeatherCard = ({dailyData}: Props) => {
         return `https://openweathermap.org/img/wn/${iconName}@2x.png`
     }
 
-    const getWindDirection = (angle) => {
+    const getWindDirection = (angle: number) => {
         const directions = ['S', 'SV', 'V', 'JV', 'J', 'JZ', 'Z', 'SZ'];
         const index = Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
         return directions[index];

@@ -1,6 +1,13 @@
+$borderRadius: 0.4rem;
+
 .App {
   text-align: center;
   padding: 2rem;
+}
+
+h1 {
+
+  margin: 0 0 2rem 0;
 }
 
 .weatherDay {
@@ -12,7 +19,7 @@
   outline: lightgray solid 1px;
   padding: 0.5rem;
   margin: 0 1rem 1rem 0;
-  border-radius: 0.4rem;
+  border-radius: $borderRadius;
   box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
 
   .mainInfo {
@@ -42,4 +49,34 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.autocomplete {
+  &Wrapper {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  &Input {
+    width: 20rem;
+    height: 1.5rem;
+    padding: 0.5rem;
+    position: relative;
+  }
+
+  &Suggestions {
+    position: absolute;
+    width: 20rem;
+    outline: lightgray solid 1px;
+    border-radius: 0 0 $borderRadius $borderRadius;
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      height: 1.5rem;
+      &:hover {
+        background-color: hsl(240, 3%, 94%);
+      }
+    }
+  }
 }

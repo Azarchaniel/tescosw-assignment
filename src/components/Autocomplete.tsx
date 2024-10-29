@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import '../App.scss';
 
 interface AutocompleteProps<T> {
     data: T[];
@@ -59,9 +60,10 @@ const Autocomplete =
     return (
         <div
             ref={wrapperRef}
-            className={`relative`}
+            className="autocompleteWrapper"
         >
             <input
+                className="autocompleteInput"
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
@@ -69,7 +71,7 @@ const Autocomplete =
             />
 
             {isOpen && filteredSuggestions.length > 0 && (
-                <ul>
+                <ul className="autocompleteSuggestions">
                     {filteredSuggestions.map((suggestion, index) => (
                         <li
                             key={suggestion.id}

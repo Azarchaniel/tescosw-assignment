@@ -16,11 +16,11 @@ export interface IWeatherData {
     lon: number;
     timezone: string;
     timezone_offset: number;
-    current: CurrentWeather;
-    minutely: MinuteForecast[];
-    hourly: HourlyForecast[];
-    daily: DailyForecast[];
-    alerts?: WeatherAlert[];
+    current: ICurrentWeather;
+    minutely: IMinuteForecast[];
+    hourly: IHourlyForecast[];
+    daily: IDailyForecast[];
+    alerts?: IWeatherAlert[];
 }
 
 export interface ICurrentWeather {
@@ -38,7 +38,7 @@ export interface ICurrentWeather {
     wind_speed: number;
     wind_deg: number;
     wind_gust?: number;
-    weather: WeatherCondition[];
+    weather: IWeatherCondition[];
 }
 
 export interface IMinuteForecast {
@@ -59,7 +59,7 @@ export interface IHourlyForecast {
     wind_speed: number;
     wind_deg: number;
     wind_gust?: number;
-    weather: WeatherCondition[];
+    weather: IWeatherCondition[];
     pop: number;
 }
 
@@ -71,15 +71,15 @@ export interface IDailyForecast {
     moonset: number;
     moon_phase: number;
     summary?: string;
-    temp: DailyTemperature;
-    feels_like: DailyFeelsLike;
+    temp: IDailyTemperature;
+    feels_like: IDailyFeelsLike;
     pressure: number;
     humidity: number;
     dew_point: number;
     wind_speed: number;
     wind_deg: number;
     wind_gust?: number;
-    weather: WeatherCondition[];
+    weather: IWeatherCondition[];
     clouds: number;
     pop: number;
     rain?: number;
