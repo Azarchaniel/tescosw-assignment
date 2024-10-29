@@ -1,4 +1,4 @@
-export type OPEN_WEATHER_APP_UNITS = 'standard' | 'metric' | 'imperial';
+export type OPEN_WEATHER_APP_UNITS = "standard" | "metric" | "imperial";
 
 export interface ICity {
     id: number | string,
