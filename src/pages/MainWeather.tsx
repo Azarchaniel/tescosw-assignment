@@ -8,10 +8,12 @@ import '../App.scss';
 import Spinner from "../components/Spinner";
 
 export const MainWeatherPage = (): ReactElement => {
+    const defaultTitle = "Předpověď počasí";
+
     const [loading, setLoading] = useState(false);
     const [weatherData, setWeatherData] = useState<IWeatherData | undefined>(undefined);
     const [city, setCity] = useState<ICity | null>(null);
-    const [title, setTitle] = useState("Předpověď počasí");
+    const [title, setTitle] = useState(defaultTitle);
 
     const cityData: ICity[] = cityListJson as ICity[];
 
@@ -19,6 +21,7 @@ export const MainWeatherPage = (): ReactElement => {
         if (!city) return;
 
         setLoading(true);
+        setTitle(defaultTitle)
         //coordinations comes from city.list.json
         fetchWeatherData(city.coord.lat, city.coord.lon)
             .then((res) => {
@@ -46,6 +49,7 @@ export const MainWeatherPage = (): ReactElement => {
 
     const getCityFromPosition = async () => {
         setLoading(true);
+        setTitle(defaultTitle);
         const position: GeolocationPosition = await getCurrentPosition();
         const nearestCity = findClosestCityOptimized(position, cityData)
         setCity(nearestCity);
@@ -57,7 +61,7 @@ export const MainWeatherPage = (): ReactElement => {
             <h1>{title}</h1>
             <Autocomplete<ICity>
                 data={cityData}
-                initialValue={city?.name}
+                initialValue={loading ? "" : city?.name}
                 onSelect={setCity}
                 getDisplayValue={(city) => city.name}
                 placeholder="Vyhledejte město"
