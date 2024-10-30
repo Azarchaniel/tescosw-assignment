@@ -151,11 +151,13 @@ h1 {
 
 .weatherChart {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   max-height: 0;
   transition: all 1s ease;
   // chart.js is rendering charts into canvas
   canvas {
-    margin-right: 2rem;
+    margin: 0 2rem 2rem 0;
   }
 }
 

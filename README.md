@@ -1,7 +1,7 @@
 # TescoSW assignment - Weather forecast application
 
-Weather forecast application create as an assignment for a JavaScript developer role in TescoSW.
-Allow user to see weather forecast for the five days (min/avg/max temperature, humidity, wind speed and direction, sunrise, sunset).
+Weather forecast application create as an assignment for a JavaScript developer role in TescoSW.\
+Allow user to see weather forecast for the five days (min/avg/max temperature, humidity, wind speed and direction, sunrise, sunset).\
 The city for the forecast can be chosen either with autocomplete or with geolocation.
 
 ## Available Scripts
@@ -63,6 +63,12 @@ Apply ESLint rules on the whole project, or use flag `--fix` to fix the issues.
 ├── README.md
 └── tsconfig.json
 ```
+
+### Supported browsers
+Chrome 64+\
+Firefox 63+\
+Safari 12+\
+Edge 79+ (Chromium-based)
 
 ## Author
 [Lubos Csonka](https://www.linkedin.com/in/%C4%BEubo%C5%A1-csonka-1443aa136/)

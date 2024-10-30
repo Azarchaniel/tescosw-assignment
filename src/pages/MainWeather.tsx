@@ -71,7 +71,7 @@ export const MainWeatherPage = (): ReactElement => {
 			/>
 			<Spinner loading={loading}/>
 			<div className="forecast">{displayDailyWeatherData()}</div>
-			{weatherData ? <>
+			{weatherData && !loading ? <>
 				<div className="toggleChart" onClick={() => setOpenCharts(!openCharts)}>
 					<span>{openCharts ? "▲" : "▼"}</span>
                     &nbsp;
